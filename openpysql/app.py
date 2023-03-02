@@ -1,3 +1,4 @@
+import bcrypt
 import pymysql
 import sqlite3
 
@@ -28,6 +29,16 @@ class OpenPySQL:
                                      database=database,
                                      cursorclass=pymysql.cursors.DictCursor)
         return cls(connection, 'mysql')
+
+    @staticmethod
+    def hashpw(password: str) -> str:
+        return bcrypt.hashpw(password.encode(), bcrypt.gensalt(rounds=13)).decode()
+
+    @staticmethod
+    def checkpw(password: str, hashed: str) -> bool:
+        if bcrypt.checkpw(password.encode(), hashed.encode()):
+            return True
+        return False
 
     @property
     def query(self):

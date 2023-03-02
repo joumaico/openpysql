@@ -31,3 +31,8 @@ def test_sql():
     db.fetch(1)
 
     db.close()
+
+
+def test_password():
+    hash = OpenPySQL.hashpw('helloworld')
+    assert OpenPySQL.checkpw('helloworld', hash) == True

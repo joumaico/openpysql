@@ -72,6 +72,26 @@ db.fetch(1) # fetch the next row.
 db.close()
 ```
 
+#### *staticmethod* .hashpw(password) -> str
+↳ Generate a new hash.
+```python
+from openpysql import OpenPySQL
+
+hash = OpenPySQL.hashpw('helloworld')
+```
+
+#### *staticmethod* .checkpw(password, hash) -> bool
+↳ Check if the password is match with the hash.
+```python
+ismatch = OpenPySQL.checkpw('helloworld', hash)
+```
+
+## Changelog
+
+### 1.1.0
+* Added `requirements.txt` in root directory.
+* Added a hashing password functionality based on `bcrypt`.
+
 ## Links
 * PyPI Releases: https://pypi.org/project/openpysql
 * Source Code: https://github.com/joumaico/openpysql
